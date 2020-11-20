@@ -1,0 +1,50 @@
+## Test robot does not fall off the board
+PLACE 0,0,SOUTH
+MOVE
+MOVE
+MOVE
+MOVE
+MOVE
+MOVE
+
+## Test multiple valid PLACE commands
+PLACE 0,0,NORTH
+PLACE 4,4,SOUTH
+PLACE 4,0 EAST
+PLACE 0,4 WEST
+PLACE 2,2,NORTH
+
+## Test commands other than PLACE are ignored before an initial PLACE command
+MOVE
+LEFT
+REPORT
+RIGHT
+PLACE 1,1,NORTH
+MOVE
+REPORT
+
+## Test invalid PLACE commands
+PLACE 5,5,NORTH
+PLACE 4,4,SOUTHWEST
+PLACE
+PLACE 0,4
+PLACE NORTH
+
+## Test all commands
+PLACE 0,0,NORTH
+REPORT
+MOVE
+MOVE
+REPORT
+RIGHT
+REPORT
+MOVE
+MOVE
+REPORT
+PLACE 4,4,SOUTH
+REPORT
+
+## Test invalid commands
+MOVEEE
+LEFTRIGHT
+REPORTS

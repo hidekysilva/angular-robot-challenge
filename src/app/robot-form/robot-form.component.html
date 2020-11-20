@@ -1,0 +1,30 @@
+<h1>Robot Challenge</h1>
+
+<p>Valid commands will be logged to the browser's console.
+  <br>Multiple commands may be entered into the textarea, separated by a new line.
+  <br>After a valid PLACE command, a board will be displayed showing the robot's location. 
+  <br>The letter displayed on the board represents the robot's direction, such as N for North.
+  <br>The output of a REPORT command will be displayed below the board and logged to the browser's console.
+</p>
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <label>
+    Enter commands here:
+    <textarea formControlName="userInput" rows="10" cols="30">
+    </textarea>
+  </label>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
+
+<table *ngIf="robot.hasLanded">
+  <tr *ngFor="let c1 of coordinates">
+    <td *ngFor="let c2 of coordinates">
+      <span *ngIf="robot.x === c2.x && robot.y === c1.y; else elseBlock">{{robot.cardinality.charAt(0)}}</span>
+      <ng-template #elseBlock>-</ng-template>
+    </td>
+  </tr>
+</table>
+
+<div class="report" *ngIf="robot.reportText">
+  <p>{{robot.reportText}}</p>
+</div>
